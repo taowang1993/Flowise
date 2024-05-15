@@ -5,6 +5,7 @@ services:
         image: flowiseai/flowise
         restart: always
         environment:
+            - PORT=${PORT}
             - CORS_ORIGINS=${CORS_ORIGINS}
             - IFRAME_ORIGINS=${IFRAME_ORIGINS}
             - FLOWISE_USERNAME=${FLOWISE_USERNAME}

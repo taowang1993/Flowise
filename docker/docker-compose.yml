@@ -5,7 +5,6 @@ services:
         image: flowiseai/flowise
         restart: always
         environment:
-            - PORT=${PORT}
             - CORS_ORIGINS=${CORS_ORIGINS}
             - IFRAME_ORIGINS=${IFRAME_ORIGINS}
             - FLOWISE_USERNAME=${FLOWISE_USERNAME}
@@ -29,8 +28,24 @@ services:
             - BLOB_STORAGE_PATH=${BLOB_STORAGE_PATH}
             - DISABLE_FLOWISE_TELEMETRY=${DISABLE_FLOWISE_TELEMETRY}
             - MODEL_LIST_CONFIG_JSON=${MODEL_LIST_CONFIG_JSON}
-        ports:
-            - '${PORT}:${PORT}'
+            - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2}
+            - LANGCHAIN_ENDPOINT=${LANGCHAIN_ENDPOINT}
+            - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+            - LANGCHAIN_PROJECT=${LANGCHAIN_PROJECT}
+            - LANGCHAIN_CALLBACKS_BACKGROUND=${LANGCHAIN_CALLBACKS_BACKGROUND}
+            - TOOL_FUNCTION_BUILTIN_DEP=${TOOL_FUNCTION_BUILTIN_DEP}
+            - TOOL_FUNCTION_EXTERNAL_DEP=${TOOL_FUNCTION_EXTERNAL_DEP}
+            - STORAGE_TYPE=${STORAGE_TYPE}
+            - S3_STORAGE_BUCKET_NAME=${S3_STORAGE_BUCKET_NAME}
+            - S3_STORAGE_ACCESS_KEY_ID=${S3_STORAGE_ACCESS_KEY_ID}
+            - S3_STORAGE_SECRET_ACCESS_KEY=${S3_STORAGE_SECRET_ACCESS_KEY}
+            - S3_STORAGE_REGION=${S3_STORAGE_REGION}
+            - OVERRIDE_DATABASE=${OVERRIDE_DATABASE}
+            - NUMBER_OF_PROXIES=${NUMBER_OF_PROXIES}
+            - PGSSLMODE=${PGSSLMODE}
         volumes:
-            - ~/.flowise:/root/.flowise
+            - flowisedb:/app/storage
         command: /bin/sh -c "sleep 3; flowise start"
+
+volumes:
+    flowisedb:

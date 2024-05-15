@@ -47,7 +47,6 @@ services:
         volumes:
             - flowisedb:/app/storage
         command: /bin/sh -c "sleep 3; flowise start"
-ports:
-            - '${PORT}:${PORT}'
+
 volumes:
     flowisedb:
